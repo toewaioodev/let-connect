@@ -46,5 +46,8 @@ class AppServiceProvider extends ServiceProvider
                 ->uncompromised()
             : null,
         );
+          if (config('app.env') === 'production' || isset($_SERVER['HTTP_X_FORWARDED_PROTO'])) {
+            URL::forceScheme('https');
+        }
     }
 }
